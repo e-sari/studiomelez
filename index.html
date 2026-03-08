@@ -56,7 +56,7 @@
   .nav-right {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .nav-links {
@@ -76,22 +76,6 @@
   }
 
   .nav-links a:hover { opacity: 1; }
-
-  .nav-menu-btn {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--dark);
-    opacity: 0.55;
-    font-family: 'Karla', sans-serif;
-    transition: opacity 0.3s;
-    padding: 0;
-  }
-
-  .nav-menu-btn:hover { opacity: 1; }
 
   /* ── OVERLAY NAV ── */
   .nav-overlay {
@@ -180,9 +164,7 @@
     transition: border-color 0.3s;
   }
 
-  .overlay-contact a:hover {
-    border-color: var(--dark);
-  }
+  .overlay-contact a:hover { border-color: var(--dark); }
 
   /* ── HERO ── */
   .hero {
@@ -306,12 +288,14 @@
     margin-bottom: 0;
     text-decoration: none;
     color: inherit;
+    position: relative;
   }
 
   .project-img-wrap {
     width: 100%;
     overflow: hidden;
     line-height: 0;
+    position: relative;
   }
 
   .project-img-wrap img {
@@ -324,24 +308,25 @@
                 filter 0.7s ease;
   }
 
-  .project-entry:nth-child(even) .project-img-wrap img {
-    aspect-ratio: 4/3;
-  }
-
-  .project-entry:nth-child(3n) .project-img-wrap img {
-    aspect-ratio: 21/9;
-  }
+  .project-entry:nth-child(even) .project-img-wrap img { aspect-ratio: 4/3; }
+  .project-entry:nth-child(3n) .project-img-wrap img { aspect-ratio: 21/9; }
 
   .project-entry:hover .project-img-wrap img {
     transform: scale(1.025);
     filter: sepia(0%) saturate(100%);
   }
 
-  .project-meta {
-    padding: 1.8rem 3rem 5rem;
+  /* Project title overlaid ON the image */
+  .project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 3rem 2rem;
+    background: linear-gradient(to top, rgba(20,18,14,0.65) 0%, transparent 100%);
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-end;
   }
 
   .project-name {
@@ -350,15 +335,19 @@
     font-weight: 300;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    color: #fff;
   }
 
   .project-detail {
     font-size: 0.62rem;
     letter-spacing: 0.1em;
-    color: var(--mid);
+    color: rgba(255,255,255,0.7);
     text-align: right;
     line-height: 1.9;
   }
+
+  /* Spacer between projects */
+  .project-entry { margin-bottom: 4rem; }
 
   /* ── ABOUT ── */
   #about {
@@ -377,13 +366,12 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
-    gap: 9rem;
+    gap: 7rem;
     align-items: start;
   }
 
   .about-img {
     width: 100%;
-    aspect-ratio: 3/4;
     object-fit: cover;
     filter: sepia(8%) saturate(85%);
     display: block;
@@ -407,13 +395,10 @@
     max-width: 520px;
   }
 
-  .founders {
-    margin-top: 4.5rem;
-    padding-top: 3.5rem;
+  .founder {
+    margin-top: 4rem;
+    padding-top: 3rem;
     border-top: 1px solid var(--light);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
   }
 
   .founder-name {
@@ -421,7 +406,7 @@
     font-size: 1.05rem;
     font-weight: 300;
     letter-spacing: 0.05em;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
   }
 
   .founder-title {
@@ -436,20 +421,157 @@
     font-size: 0.78rem;
     line-height: 2;
     color: var(--mid);
+    max-width: 520px;
   }
+
+  /* ── GET IN TOUCH ── */
+  #contact {
+    padding: 9rem 3rem;
+    border-top: 1px solid var(--light);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-left {}
+
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-heading em { font-style: italic; }
+
+  .contact-intro {
+    font-size: 0.84rem;
+    line-height: 2;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    max-width: 420px;
+  }
+
+  .contact-right {
+    padding-top: 0.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .form-group label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--light);
+    color: var(--dark);
+    padding: 0.6rem 0;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--dark);
+  }
+
+  .form-group textarea {
+    resize: none;
+    min-height: 100px;
+  }
+
+  .form-group select option { background: var(--cream); }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  .form-check input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--light);
+    appearance: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    background: transparent;
+    border-bottom: 1px solid var(--light);
+    padding: 0;
+  }
+
+  .form-check input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--dark);
+  }
+
+  .submit-btn {
+    background: var(--dark);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover { opacity: 0.7; }
 
   /* ── FOOTER ── */
   footer {
     background: var(--dark);
     color: var(--cream);
-    padding: 6rem 3rem 3rem;
+    padding: 5rem 3rem 3rem;
   }
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
   }
 
   .footer-col-heading {
@@ -457,7 +579,7 @@
     letter-spacing: 0.22em;
     text-transform: uppercase;
     opacity: 0.35;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
   }
 
   .footer-col-text {
@@ -474,10 +596,7 @@
 
   .footer-col-text a:hover { color: var(--cream); }
 
-  .footer-links {
-    list-style: none;
-  }
-
+  .footer-links { list-style: none; }
   .footer-links li { margin-bottom: 0.9rem; }
 
   .footer-links a {
@@ -503,20 +622,20 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; }
-    .nav-links { display: none; }
     .nav-overlay { padding: 1.2rem 1.5rem 3rem; }
     .hero-text { left: 1.5rem; bottom: 2.5rem; }
     .hero-scroll { display: none; }
     .statement { padding: 5rem 1.5rem; }
     .projects-header { padding: 0 1.5rem 3rem; }
-    .project-meta { padding: 1.2rem 1.5rem 3.5rem; flex-direction: column; gap: 0.4rem; }
+    .project-overlay { padding: 2rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
     .project-detail { text-align: left; }
     .project-entry:nth-child(even) .project-img-wrap img,
     .project-entry:nth-child(3n) .project-img-wrap img { aspect-ratio: 16/9; }
     #about { padding: 5rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .founders { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    #contact { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 0.8rem; }
   }
 </style>
@@ -528,13 +647,11 @@
   <a href="#" class="nav-logo">
     <img src="logo1.webp" alt="Studio Melez">
   </a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-    <button class="nav-menu-btn" onclick="openNav()">Open Navigation</button>
-  </div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
 <!-- OVERLAY NAV -->
@@ -543,7 +660,7 @@
     <a href="#" class="overlay-logo">
       <img src="logo1.webp" alt="Studio Melez">
     </a>
-    <button class="overlay-close" onclick="closeNav()">Close Navigation</button>
+    <button class="overlay-close" onclick="closeNav()">Close</button>
   </div>
   <ul class="overlay-links">
     <li><a href="#projects" onclick="closeNav()">Projects</a></li>
@@ -568,26 +685,27 @@
 <!-- STATEMENT -->
 <div class="statement">
   <p class="statement-label">The Studio</p>
-  <p class="statement-text">Studio Melez designs spaces that enhance human experience, sparking emotion through  texture and cultural influence.</p>
-  <a href="#about" class="read-more">Read More</a>
+  <p class="statement-text">Studio Melez is a multidisciplinary design studio creating spaces that <em>enhance human experience</em> — through texture, material, and cultural memory. We believe great interiors are not decorated, they are built: from the structure of light to the weight of a surface, from the grain of a material to the silence between objects. Each project begins with careful listening — to the client, to the site, to the story that wants to be told. The result is spaces that feel both rooted and alive, shaped by craft, curiosity, and a deep respect for the made world.</p>
+  <a href="#about" class="read-more">Learn More</a>
 </div>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="projects-header">
     <span class="projects-label">Selected Projects</span>
-    <span class="projects-count">06</span>
+    <span class="projects-count">01</span>
   </div>
 
   <a href="#" class="project-entry">
     <div class="project-img-wrap">
-      <img src="SM6.png" alt="Tribeca Aparment">
-    </div>
-    <div class="project-meta">
-      <div class="project-name">Tribeca Apartment</div>
-      <div class="project-detail">Residential — Tribeca</div>
+      <img src="SM6.png" alt="Tribeca Apartment">
+      <div class="project-overlay">
+        <div class="project-name">Tribeca Apartment</div>
+        <div class="project-detail">Residential — Tribeca</div>
+      </div>
     </div>
   </a>
+
 </section>
 
 <!-- ABOUT -->
@@ -597,21 +715,62 @@
     <div>
       <img class="about-img"
         src="20230525-Ezgi_0812_BW.jpeg"
-        alt="Studio">
+        alt="Ezgi Sari">
     </div>
     <div>
-      <h2 class="about-heading">A multidisciplinary practice built on <em>taste, culture, and craftmanship</em></h2>
+      <h2 class="about-heading">A multidisciplinary practice built on <em>taste, culture, and craftsmanship.</em></h2>
       <p class="about-body">Our work is shaped by layered cultural references, creating spaces that feel both rooted and contemporary. The studio is recognized for its emphasis on craftsmanship and personal gestures, expressed through refined detail and intentional design.</p>
       <p class="about-body">The practice approaches each project holistically — architecture, interiors, and decorative arts considered as a single, unified gesture. The result is spaces that feel inevitable, as though they could not have been otherwise.</p>
-      <a href="#" class="read-more">Full Studio Profile</a>
-      <div class="founders">
-          <div class="founder-name">Ezgi Sari</div>
-          <div class="founder-title">Principal</div>
-          <p class="founder-bio">Trained as an interior architect and furniture designer, Ezgi brings a rigorous spatial sensibility to her work — shaped by material exploration, cultural narratives, and a careful balance of texture, light, and proportion.</p>
+      <div class="founder">
+        <div class="founder-name">Ezgi Sari</div>
+        <div class="founder-title">Principal</div>
+        <p class="founder-bio">Trained as an interior architect and furniture designer, Ezgi brings a rigorous spatial sensibility to her work — shaped by material exploration, cultural narratives, and a careful balance of texture, light, and proportion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET IN TOUCH -->
+<section id="contact">
+  <div class="contact-left">
+    <h2 class="contact-heading">Get in<br><em>Touch</em></h2>
+    <p class="contact-intro">Whether you have a question, an idea, or just want to say hello — feel free to reach out. We love connecting.</p>
+    <p class="contact-intro">Use the form to drop us a message and we'll get back to you as soon as we can.</p>
+  </div>
+  <div class="contact-right">
+    <form class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="hello@example.com">
+      </div>
+      <label class="form-check">
+        <input type="checkbox"> Sign up for news and updates
+      </label>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" placeholder="What is this about?">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your project..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer id="contact">
+<footer>
   <div class="footer-grid">
     <div>
       <p class="footer-col-heading">Contact</p>
