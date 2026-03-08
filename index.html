@@ -53,12 +53,6 @@
     display: block;
   }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-  }
-
   .nav-links {
     display: flex;
     gap: 2.5rem;
@@ -124,9 +118,7 @@
 
   .overlay-close:hover { opacity: 1; }
 
-  .overlay-links {
-    list-style: none;
-  }
+  .overlay-links { list-style: none; }
 
   .overlay-links li {
     border-top: 1px solid var(--light);
@@ -221,11 +213,16 @@
   /* ── STATEMENT ── */
   .statement {
     padding: 8rem 3rem;
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
   }
 
+  .statement-content { max-width: 560px; }
+
   .statement-label {
-    font-size: 0.58rem;
+    font-size: 0.56rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--mid);
@@ -234,14 +231,22 @@
 
   .statement-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    font-size: clamp(1.1rem, 1.6vw, 1.45rem);
     font-weight: 300;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--dark);
     margin-bottom: 3rem;
   }
 
   .statement-text em { font-style: italic; }
+
+  .statement-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    filter: sepia(5%) saturate(88%);
+    display: block;
+  }
 
   .read-more {
     font-size: 0.62rem;
@@ -285,7 +290,7 @@
     display: block;
     width: 100%;
     cursor: pointer;
-    margin-bottom: 0;
+    margin-bottom: 4rem;
     text-decoration: none;
     color: inherit;
     position: relative;
@@ -316,38 +321,38 @@
     filter: sepia(0%) saturate(100%);
   }
 
-  /* Project title overlaid ON the image */
+  /* Text overlaid on image — bottom right */
   .project-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 3rem 3rem 2rem;
-    background: linear-gradient(to top, rgba(20,18,14,0.65) 0%, transparent 100%);
+    padding: 4rem 2.5rem 2rem;
+    background: linear-gradient(to top, rgba(20,18,14,0.6) 0%, transparent 100%);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-end;
+    gap: 2rem;
   }
 
   .project-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
     font-weight: 300;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #fff;
+    text-align: right;
   }
 
   .project-detail {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.65);
     text-align: right;
     line-height: 1.9;
+    white-space: nowrap;
   }
-
-  /* Spacer between projects */
-  .project-entry { margin-bottom: 4rem; }
 
   /* ── ABOUT ── */
   #about {
@@ -434,8 +439,6 @@
     align-items: start;
   }
 
-  .contact-left {}
-
   .contact-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.5rem, 5vw, 5rem);
@@ -453,10 +456,6 @@
     color: var(--mid);
     margin-bottom: 1rem;
     max-width: 420px;
-  }
-
-  .contact-right {
-    padding-top: 0.5rem;
   }
 
   .contact-form {
@@ -501,17 +500,9 @@
   }
 
   .form-group input:focus,
-  .form-group textarea:focus,
-  .form-group select:focus {
-    border-color: var(--dark);
-  }
+  .form-group textarea:focus { border-color: var(--dark); }
 
-  .form-group textarea {
-    resize: none;
-    min-height: 100px;
-  }
-
-  .form-group select option { background: var(--cream); }
+  .form-group textarea { resize: none; min-height: 100px; }
 
   .form-check {
     display: flex;
@@ -532,8 +523,6 @@
     flex-shrink: 0;
     position: relative;
     background: transparent;
-    border-bottom: 1px solid var(--light);
-    padding: 0;
   }
 
   .form-check input[type="checkbox"]:checked::after {
@@ -574,12 +563,18 @@
     margin-bottom: 4rem;
   }
 
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
   .footer-col-heading {
     font-size: 0.58rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     opacity: 0.35;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 
   .footer-col-text {
@@ -595,6 +590,11 @@
   }
 
   .footer-col-text a:hover { color: var(--cream); }
+
+  .footer-right {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   .footer-links { list-style: none; }
   .footer-links li { margin-bottom: 0.9rem; }
@@ -625,10 +625,9 @@
     .nav-overlay { padding: 1.2rem 1.5rem 3rem; }
     .hero-text { left: 1.5rem; bottom: 2.5rem; }
     .hero-scroll { display: none; }
-    .statement { padding: 5rem 1.5rem; }
+    .statement { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
     .projects-header { padding: 0 1.5rem 3rem; }
-    .project-overlay { padding: 2rem 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
-    .project-detail { text-align: left; }
+    .project-overlay { padding: 2rem 1.5rem 1.5rem; }
     .project-entry:nth-child(even) .project-img-wrap img,
     .project-entry:nth-child(3n) .project-img-wrap img { aspect-ratio: 16/9; }
     #about { padding: 5rem 1.5rem; }
@@ -636,6 +635,7 @@
     #contact { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
     .form-row { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
+    .footer-right { justify-content: flex-start; }
     .footer-bottom { flex-direction: column; gap: 0.8rem; }
   }
 </style>
@@ -684,24 +684,35 @@
 
 <!-- STATEMENT -->
 <div class="statement">
-  <p class="statement-label">The Studio</p>
-  <p class="statement-text">Studio Melez is a multidisciplinary design studio creating spaces that <em>enhance human experience</em> — through texture, material, and cultural memory. We believe great interiors are not decorated, they are built: from the structure of light to the weight of a surface, from the grain of a material to the silence between objects. Each project begins with careful listening — to the client, to the site, to the story that wants to be told. The result is spaces that feel both rooted and alive, shaped by craft, curiosity, and a deep respect for the made world.</p>
-  <a href="#about" class="read-more">Learn More</a>
+  <div class="statement-content">
+    <p class="statement-label">The Studio</p>
+    <p class="statement-text">Studio Melez is a multidisciplinary design studio creating spaces that <em>enhance human experience</em> — through texture, material, and cultural memory. We believe great interiors are not decorated, they are built: from the structure of light to the weight of a surface, from the grain of a material to the silence between objects. Each project begins with careful listening — to the client, to the site, to the story that wants to be told. The result is spaces that feel both rooted and alive, shaped by craft, curiosity, and a deep respect for the made world.</p>
+    <a href="#about" class="read-more">Learn More</a>
+  </div>
+  <img class="statement-img" src="SM10.jpg" alt="Studio Melez Detail">
 </div>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="projects-header">
     <span class="projects-label">Selected Projects</span>
-    <span class="projects-count">01</span>
+    <span class="projects-count">02</span>
   </div>
 
   <a href="#" class="project-entry">
     <div class="project-img-wrap">
       <img src="SM6.png" alt="Tribeca Apartment">
       <div class="project-overlay">
-        <div class="project-name">Tribeca Apartment</div>
         <div class="project-detail">Residential — Tribeca</div>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="project-entry">
+    <div class="project-img-wrap">
+      <img src="SM11.png" alt="Second Project">
+      <div class="project-overlay">
+        <div class="project-detail">Residential</div>
       </div>
     </div>
   </a>
@@ -772,20 +783,22 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div>
+    <div class="footer-left">
       <p class="footer-col-heading">Contact</p>
       <p class="footer-col-text">
         <a href="mailto:hello@studiomelez.com">hello@studiomelez.com</a>
       </p>
     </div>
-    <div>
-      <p class="footer-col-heading">Links</p>
-      <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#">Subscribe</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
+    <div class="footer-right">
+      <div>
+        <p class="footer-col-heading">Links</p>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
